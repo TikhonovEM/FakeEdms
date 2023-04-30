@@ -17,24 +17,14 @@ namespace FakeEdms.Generators
         private readonly IEnumerable<string> _numberRegularExpressions = DefaultExpressions;
         
         private readonly ConcurrentDictionary<string, Xeger> _generators = new ConcurrentDictionary<string, Xeger>();
-        private readonly Random _random;
+        private readonly Random _random = new Random();
         
         public RegistrationNumberGenerator()
         {
-            _random = new Random();
-        }
-        
-        public RegistrationNumberGenerator(int seed)
-        {
-            _random = new Random(seed);
+            
         }
 
         public RegistrationNumberGenerator(IEnumerable<string> numberRegularExpressions) : this()
-        {
-            _numberRegularExpressions = numberRegularExpressions;
-        }
-        
-        public RegistrationNumberGenerator(IEnumerable<string> numberRegularExpressions, int seed) : this(seed)
         {
             _numberRegularExpressions = numberRegularExpressions;
         }
