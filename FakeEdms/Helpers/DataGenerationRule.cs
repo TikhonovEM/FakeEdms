@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Reflection;
 using Bogus;
+using FakeEdms.Generators;
 
-namespace FakeEdms
+namespace FakeEdms.Helpers
 {
     internal static class DataGenerationRule
     {
@@ -33,10 +34,11 @@ namespace FakeEdms
         
         internal static string GenerateString(PropertyInfo property, Faker faker)
         {
-            if (property.Name.Contains("RegistrationNumber"))
-                return $"RegistrationNumber {faker.UniqueIndex}";
+            if (RegexUtils.IsRegistrationNumber(property.Name))
+                return new RegistrationNumberGenerator().Generate();
 
             return faker.Lorem.Sentences(2, string.Empty);
         }
+        
     }
 }
