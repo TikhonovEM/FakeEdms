@@ -54,7 +54,7 @@ namespace FakeEdms
             
             var result = new List<T>();
             
-            var f = new Faker<T>(DefaultLocale)
+            var f = new Faker<T>(_locale)
                 .CustomInstantiator(_ => factory?.Invoke());
 
             var properties = typeof(T).GetProperties();
