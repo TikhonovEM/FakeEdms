@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeEdms", "FakeEdms\FakeEdms.csproj", "{F391D46F-F5C7-4796-9448-2A7969ADC9D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeEdms.Tests", "FakeEdms.Tests\FakeEdms.Tests.csproj", "{721944DB-01F8-4C20-9B53-C08A8CB16128}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F391D46F-F5C7-4796-9448-2A7969ADC9D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F391D46F-F5C7-4796-9448-2A7969ADC9D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F391D46F-F5C7-4796-9448-2A7969ADC9D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F391D46F-F5C7-4796-9448-2A7969ADC9D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{721944DB-01F8-4C20-9B53-C08A8CB16128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{721944DB-01F8-4C20-9B53-C08A8CB16128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{721944DB-01F8-4C20-9B53-C08A8CB16128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{721944DB-01F8-4C20-9B53-C08A8CB16128}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

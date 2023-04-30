@@ -1,0 +1,15 @@
+﻿using System;
+
+namespace FakeEdmsQ.Tests
+{
+    public class SimpleData
+    {
+        public int? Age { get; set; }
+        
+        public DateTime? Date { get; set; }
+        
+        public string Text { get; set; }
+
+        public string RegistrationNumberAdd { get; set; }
+    }
+}
