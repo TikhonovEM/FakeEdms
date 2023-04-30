@@ -8,23 +8,33 @@ namespace FakeEdms.Generators
 {
     internal class RegistrationNumberGenerator
     {
-        private readonly IEnumerable<string> _defaultExpressions = new []
+        private static readonly string[] DefaultExpressions = 
         {
             @"^\d{4}$",
             @"^[А-Яа-я]{2,6}-\d{4}-[А-Яа-я]{2,6}$"
         };
-        
-        private readonly IEnumerable<string> _numberRegularExpressions;
+
+        private readonly IEnumerable<string> _numberRegularExpressions = DefaultExpressions;
         
         private readonly ConcurrentDictionary<string, Xeger> _generators = new ConcurrentDictionary<string, Xeger>();
-        private readonly Random _random = new Random();
+        private readonly Random _random;
         
         public RegistrationNumberGenerator()
         {
-            _numberRegularExpressions = _defaultExpressions;
+            _random = new Random();
+        }
+        
+        public RegistrationNumberGenerator(int seed)
+        {
+            _random = new Random(seed);
         }
 
-        public RegistrationNumberGenerator(IEnumerable<string> numberRegularExpressions)
+        public RegistrationNumberGenerator(IEnumerable<string> numberRegularExpressions) : this()
+        {
+            _numberRegularExpressions = numberRegularExpressions;
+        }
+        
+        public RegistrationNumberGenerator(IEnumerable<string> numberRegularExpressions, int seed) : this(seed)
         {
             _numberRegularExpressions = numberRegularExpressions;
         }
