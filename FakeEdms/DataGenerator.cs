@@ -7,6 +7,8 @@ namespace FakeEdms
 {
     public class DataGenerator
     {
+        private const string DefaultLocale = "ru";
+        
         public static IEnumerable<T> Generate<T>(int count)
             where T : class
         {
@@ -18,14 +20,12 @@ namespace FakeEdms
         {
             var result = new List<T>();
             
-            var f = new Faker<T>("ru")
-                .CustomInstantiator(_ => factory.Invoke());
+            var f = new Faker<T>(DefaultLocale)
+                .CustomInstantiator(_ => factory?.Invoke());
             
             var properties = typeof(T).GetProperties();
             foreach (var property in properties)
-            {
-                f.RuleFor(property.Name, DataGenerationRule.GenerateData<T>(property));
-            }
+                f.RuleFor(property.Name, DataGenerationRule.GetDataGenerationFactory<T>(property));
 
             for (var i = 0; i < count; i++)
                 result.Add(f.Generate());

@@ -6,7 +6,7 @@ namespace FakeEdms
 {
     internal static class DataGenerationRule
     {
-        public static Func<Faker, T, object> GenerateData<T>(PropertyInfo property)
+        public static Func<Faker, T, object> GetDataGenerationFactory<T>(PropertyInfo property)
         {
             switch (property.PropertyType)
             {
