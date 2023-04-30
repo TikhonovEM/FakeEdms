@@ -1,7 +1,7 @@
 ﻿using System;
 using FakeEdms;
 
-namespace FakeEdmsQ.Tests
+namespace FakeEdms.Tests
 {
     class Program
     {

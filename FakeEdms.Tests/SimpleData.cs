@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FakeEdmsQ.Tests
+namespace FakeEdms.Tests
 {
     public class SimpleData
     {
