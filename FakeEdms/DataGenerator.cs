@@ -103,6 +103,123 @@ namespace FakeEdms
             return this;
         }
 
+        public DataGenerator<T> AsRegistrationNumber(Expression<Func<T, string>> property)
+        {
+            _faker.RuleFor(property, GeneratorUtils.RegistrationNumber);
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsRegistrationNumber(Expression<Func<T, string>> property, params string[] regNumberPatterns)
+        {
+            _faker.RuleFor(property, faker => GeneratorUtils.RegistrationNumber(regNumberPatterns));
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsSubject(Expression<Func<T, string>> property)
+        {
+            _faker.RuleFor(property, GeneratorUtils.Subject);
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsSubject(Expression<Func<T, string>> property, int maxLength)
+        {
+            _faker.RuleFor(property, faker => GeneratorUtils.Subject(faker, maxLength));
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsSubject(Expression<Func<T, string>> property, int minLength, int maxLength)
+        {
+            _faker.RuleFor(property, faker => GeneratorUtils.Subject(faker, minLength, maxLength));
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsDateBetween(Expression<Func<T, DateTime>> property, DateTime maxDate)
+        {
+            _faker.RuleFor(property, faker => GeneratorUtils.Date(faker, maxDate));
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsDateBetween(Expression<Func<T, DateTime>> property, DateTime minDate, DateTime maxDate)
+        {
+            _faker.RuleFor(property, faker => GeneratorUtils.Date(faker, minDate, maxDate));
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsDateBetween(Expression<Func<T, DateTime?>> property, DateTime maxDate)
+        {
+            _faker.RuleFor(property, faker => GeneratorUtils.Date(faker, maxDate));
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsDateBetween(Expression<Func<T, DateTime?>> property, DateTime minDate, DateTime maxDate)
+        {
+            _faker.RuleFor(property, faker => GeneratorUtils.Date(faker, minDate, maxDate));
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsConsecutiveNumber(Expression<Func<T, int>> property)
+        {
+            _faker.RuleFor(property, GeneratorUtils.ConsecutiveNumber);
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsConsecutiveNumber(Expression<Func<T, int?>> property)
+        {
+            _faker.RuleFor(property, faker => GeneratorUtils.ConsecutiveNumber(faker));
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsEmail(Expression<Func<T, string>> property)
+        {
+            _faker.RuleFor(property, GeneratorUtils.Email);
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> AsAddress(Expression<Func<T, string>> property)
+        {
+            _faker.RuleFor(property, GeneratorUtils.Address);
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+
         #endregion
     }
 }

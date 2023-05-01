@@ -15,7 +15,7 @@ namespace FakeEdms
 
         public static string Subject(Faker faker, int maxLength) => Subject(faker, 30, maxLength);
 
-        public static string Subject(Faker faker, int minLenght, int maxLength)
+        public static string Subject(Faker faker, int minLength, int maxLength)
         {
             var text = new StringBuilder();
             var currentLength = 0;
@@ -25,7 +25,7 @@ namespace FakeEdms
                 text.Append(sentence);
                 currentLength += sentence.Length;
             }
-            return text.ToString().Substring(0, faker.Random.Int(minLenght, maxLength));
+            return text.ToString().Substring(0, faker.Random.Int(minLength, maxLength));
         }
 
         public static int Number(Faker faker, int maxValue) => Number(faker, 0, maxValue);
