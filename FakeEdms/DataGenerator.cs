@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using Bogus;
 using FakeEdms.Generators;
@@ -68,9 +69,18 @@ namespace FakeEdms
             return result;
         }
 
-        public DataGenerator<T> RuleFor(string propertyName, Func<Faker, T, object> setter)
+        public DataGenerator<T> RuleFor<TProperty>(string propertyName, Func<Faker, T, TProperty> setter)
         {
             _faker.RuleFor(propertyName, setter);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> RuleFor<TProperty>(Expression<Func<T, TProperty>> property, Func<Faker, T, TProperty> setter)
+        {
+            _faker.RuleFor(property, setter);
+            var propertyName = PropertyName.For(property);
             if (!_propertiesWithCustomRule.Contains(propertyName))
                 _propertiesWithCustomRule.Add(propertyName);
             return this;
