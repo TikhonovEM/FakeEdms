@@ -23,7 +23,7 @@ namespace FakeEdms.Generators
 
         private static int GenerateInt(PropertyInfo property, Faker faker)
         {
-            return faker.Random.Number(1, 100);
+            return faker.Random.Number(1, 1000000);
         }
 
         private static DateTime GenerateDate(PropertyInfo property, Faker faker)
