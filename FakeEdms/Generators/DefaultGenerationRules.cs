@@ -43,10 +43,10 @@ namespace FakeEdms.Generators
                 return GeneratorUtils.Subject(faker);
 
             if (RegexUtils.IsEmail(propertyName))
-                return faker.Internet.Email();
+                return GeneratorUtils.Email(faker);
             
             if (RegexUtils.IsAddress(propertyName))
-                return faker.Address.FullAddress();
+                return GeneratorUtils.Address(faker);
 
             return faker.Lorem.Sentences(2, string.Empty);
         }
