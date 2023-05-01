@@ -8,27 +8,27 @@ namespace FakeEdms
 {
     public static class GeneratorUtils
     {
-        public static string AsRegistrationNumber()
+        public static string RegistrationNumber()
         {
             return RegNumberGeneratorsPool.Instance.GetGenerator().Generate();
         }
         
-        public static string AsRegistrationNumber(params string[] numberPatterns)
+        public static string RegistrationNumber(params string[] numberPatterns)
         {
             return RegNumberGeneratorsPool.Instance.GetGenerator(numberPatterns).Generate();
         }
 
-        public static string AsSubject(Faker faker)
+        public static string Subject(Faker faker)
         {
-            return AsSubject(faker, 30, 250);
+            return Subject(faker, 30, 250);
         }
 
-        public static string AsSubject(Faker faker, int maxLength)
+        public static string Subject(Faker faker, int maxLength)
         {
-            return AsSubject(faker, 30, maxLength);
+            return Subject(faker, 30, maxLength);
         }
         
-        public static string AsSubject(Faker faker, int minLenght, int maxLength)
+        public static string Subject(Faker faker, int minLenght, int maxLength)
         {
             var text = new StringBuilder();
             var currentLength = 0;

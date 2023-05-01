@@ -8,9 +8,9 @@ namespace FakeEdms.Tests
         static void Main(string[] args)
         {
             var dataGenerator = new DataGenerator<SimpleData>();
-            /*dataGenerator
-                .RuleFor(sd => sd.RegistrationNumberAdd, (faker, data) => GeneratorUtils.AsRegistrationNumber(@"^\d{2,3}-WD$"))
-                .RuleFor(sd => sd.Text, (faker, data) => GeneratorUtils.AsSubject(faker, 1000));*/
+            dataGenerator
+                .RuleFor(sd => sd.RegistrationNumberAdd, (faker, data) => GeneratorUtils.RegistrationNumber(@"^\d{2,3}-WD$"))
+                .RuleFor(sd => sd.Text, (faker, data) => GeneratorUtils.Subject(faker, 1000));
             
             var generated = dataGenerator.Generate(1000);
             Console.WriteLine(dataGenerator.Seed);
