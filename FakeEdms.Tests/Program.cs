@@ -12,7 +12,6 @@ namespace FakeEdms.Tests
                 .RuleFor(sd => sd.RegistrationNumberAdd, (faker, data) => 
                     GeneratorUtils.RegistrationNumber(@"^\d{2,3}-WD$", @"^[А-Яа-я]{4,10}-\d{4}-УД$"))
                 .RuleFor(sd => sd.Date, (faker, data) => GeneratorUtils.Date(faker, DateTime.Now.AddDays(5)))
-                .RuleFor(sd => sd.Text, (faker, data) => GeneratorUtils.Subject(faker, 1000))
                 .RuleFor(sd => sd.Age, (faker, data) => GeneratorUtils.ConsecutiveNumber(faker));
             
             var generated = dataGenerator.Generate(20);

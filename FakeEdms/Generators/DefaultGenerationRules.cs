@@ -34,11 +34,19 @@ namespace FakeEdms.Generators
 
         private static string GenerateString(PropertyInfo property, Faker faker)
         {
-            if (RegexUtils.IsRegistrationNumber(property.Name))
+            var propertyName = property.Name;
+            
+            if (RegexUtils.IsRegistrationNumber(propertyName))
                 return GeneratorUtils.RegistrationNumber();
 
-            if (RegexUtils.IsSubject(property.Name))
+            if (RegexUtils.IsSubject(propertyName))
                 return GeneratorUtils.Subject(faker);
+
+            if (RegexUtils.IsEmail(propertyName))
+                return faker.Internet.Email();
+            
+            if (RegexUtils.IsAddress(propertyName))
+                return faker.Address.FullAddress();
 
             return faker.Lorem.Sentences(2, string.Empty);
         }
