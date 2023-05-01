@@ -8,6 +8,7 @@ namespace FakeEdms.Tests
         static void Main(string[] args)
         {
             var dataGenerator = new DataGenerator<SimpleData>();
+            dataGenerator.RuleFor(sd => sd.Text, (faker, data) => GeneratorUtils.AsRegistrationNumber(@"^\d{2,3}-WD$"));
             var generated = dataGenerator.Generate(10);
             Console.WriteLine(dataGenerator.Seed);
             foreach (var data in generated)
