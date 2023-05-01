@@ -77,7 +77,24 @@ namespace FakeEdms
             return this;
         }
         
+        public DataGenerator<T> RuleFor<TProperty>(string propertyName, Func<Faker, TProperty> setter)
+        {
+            _faker.RuleFor(propertyName, setter);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
         public DataGenerator<T> RuleFor<TProperty>(Expression<Func<T, TProperty>> property, Func<Faker, T, TProperty> setter)
+        {
+            _faker.RuleFor(property, setter);
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+        
+        public DataGenerator<T> RuleFor<TProperty>(Expression<Func<T, TProperty>> property, Func<Faker, TProperty> setter)
         {
             _faker.RuleFor(property, setter);
             var propertyName = PropertyName.For(property);

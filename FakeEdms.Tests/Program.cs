@@ -9,10 +9,10 @@ namespace FakeEdms.Tests
         {
             var dataGenerator = new DataGenerator<SimpleData>();
             dataGenerator
-                .RuleFor(sd => sd.RegistrationNumberAdd, (faker, data) => 
+                .RuleFor(sd => sd.RegistrationNumberAdd, faker => 
                     GeneratorUtils.RegistrationNumber(@"^\d{2,3}-WD$", @"^[А-Яа-я]{4,10}-\d{4}-УД$"))
-                .RuleFor(sd => sd.Date, (faker, data) => GeneratorUtils.Date(faker, DateTime.Now.AddDays(5)))
-                .RuleFor(sd => sd.Age, (faker, data) => GeneratorUtils.ConsecutiveNumber(faker));
+                .RuleFor(sd => sd.Date, faker => GeneratorUtils.Date(faker, DateTime.Now.AddDays(5)))
+                .RuleFor(sd => sd.Age, faker => GeneratorUtils.ConsecutiveNumber(faker));
             
             var generated = dataGenerator.Generate(20);
             Console.WriteLine(dataGenerator.Seed);
