@@ -71,12 +71,11 @@ namespace FakeEdms
         public DataGenerator<T> RuleFor(string propertyName, Func<Faker, T, object> setter)
         {
             _faker.RuleFor(propertyName, setter);
-            _propertiesWithCustomRule.Add(propertyName);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
             return this;
         }
 
         #endregion
-
-        
     }
 }
