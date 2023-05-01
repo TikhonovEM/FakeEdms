@@ -35,7 +35,10 @@ namespace FakeEdms.Generators
         private static string GenerateString(PropertyInfo property, Faker faker)
         {
             if (RegexUtils.IsRegistrationNumber(property.Name))
-                return new RegistrationNumberGenerator().Generate();
+                return GeneratorUtils.RegistrationNumber();
+
+            if (RegexUtils.IsSubject(property.Name))
+                return GeneratorUtils.Subject(faker);
 
             return faker.Lorem.Sentences(2, string.Empty);
         }

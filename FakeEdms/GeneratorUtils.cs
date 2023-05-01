@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Bogus;
@@ -39,6 +40,31 @@ namespace FakeEdms
                 currentLength += sentence.Length;
             }
             return text.ToString().Substring(0, faker.Random.Int(minLenght, maxLength));
+        }
+
+        public static int Number(Faker faker, int maxValue)
+        {
+            return Number(faker, 0, maxValue);
+        }
+        
+        public static int Number(Faker faker, int minValue, int maxValue)
+        {
+            return faker.Random.Int(minValue, maxValue);
+        }
+
+        public static DateTime Date(Faker faker, DateTime maxDate)
+        {
+            return Date(faker, DateTime.Today, maxDate);
+        }
+
+        public static DateTime Date(Faker faker, DateTime minDate, DateTime maxDate)
+        {
+            return faker.Date.BetweenOffset(minDate, maxDate).DateTime;
+        }
+
+        public static int ConsecutiveNumber(Faker faker)
+        {
+            return faker.IndexFaker;
         }
     }
 }

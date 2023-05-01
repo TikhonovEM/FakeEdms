@@ -11,6 +11,8 @@ namespace FakeEdms.Tests
         public string Text { get; set; }
 
         public string RegistrationNumberAdd { get; set; }
+        
+        public string DocumentAnnotation { get; set; }
 
         public static SimpleData Create()
         {
