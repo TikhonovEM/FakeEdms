@@ -34,6 +34,7 @@ namespace FakeEdms
 
         public DataGenerator(string locale)
         {
+            Seed = Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds());
             _faker = new Faker<T>(locale);
         }
 
