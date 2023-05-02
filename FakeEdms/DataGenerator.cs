@@ -221,6 +221,15 @@ namespace FakeEdms
             return this;
         }
 
+        public DataGenerator<T> AsConstant<TProperty>(Expression<Func<T, TProperty>> property, TProperty value)
+        {
+            _faker.RuleFor(property, _ => value);
+            var propertyName = PropertyName.For(property);
+            if (!_propertiesWithCustomRule.Contains(propertyName))
+                _propertiesWithCustomRule.Add(propertyName);
+            return this;
+        }
+
         #endregion
     }
 }

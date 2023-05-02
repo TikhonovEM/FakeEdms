@@ -14,7 +14,8 @@ namespace FakeEdms.Tests
             dataGenerator
                 .AsRegistrationNumber(sd => sd.RegistrationNumberAdd, @"^\d{2,3}-WD$", @"^[А-Яа-я]{4,10}-\d{4}-УД$")
                 .AsDateBetween(sd => sd.Date, DateTime.Now.AddDays(5))
-                .AsConsecutiveNumber(sd => sd.Age);
+                .AsConsecutiveNumber(sd => sd.Age)
+                .AsConstant(sd => sd.DoubleValue, 69.69);
             
             var generated = dataGenerator.Generate(20);
             Console.WriteLine(dataGenerator.Seed);
