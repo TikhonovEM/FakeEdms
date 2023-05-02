@@ -28,6 +28,8 @@ namespace FakeEdms
             return text.ToString().Substring(0, faker.Random.Int(minLength, maxLength));
         }
 
+        public static int Number(Faker faker) => Number(faker, 0, 1_000_000);
+
         public static int Number(Faker faker, int maxValue) => Number(faker, 0, maxValue);
 
         public static int Number(Faker faker, int minValue, int maxValue) => faker.Random.Int(minValue, maxValue);
@@ -38,6 +40,17 @@ namespace FakeEdms
 
         public static int ConsecutiveNumber(Faker faker) => faker.IndexFaker;
 
+        public static double Double(Faker faker) => Double(faker, 0, 1_000_000);
+
+        public static double Double(Faker faker, double maxValue) => Double(faker, 0, maxValue);
+
+        public static double Double(Faker faker, double minValue, double maxValue) => faker.Random.Double(minValue, maxValue);
+
+        public static float Float(Faker faker) => Float(faker, 0, 1_000_000);
+
+        public static float Float(Faker faker, float maxValue) => Float(faker, 0, maxValue);
+        
+        public static float Float(Faker faker, float minValue, float maxValue) => faker.Random.Float(minValue, maxValue);
         public static string Email(Faker faker) => faker.Internet.Email();
 
         public static string Address(Faker faker) => faker.Address.FullAddress();

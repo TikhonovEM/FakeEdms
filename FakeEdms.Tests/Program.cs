@@ -1,5 +1,8 @@
 ﻿using System;
 using FakeEdms;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 
 namespace FakeEdms.Tests
 {
@@ -16,8 +19,12 @@ namespace FakeEdms.Tests
             var generated = dataGenerator.Generate(20);
             Console.WriteLine(dataGenerator.Seed);
             foreach (var data in generated)
-            {
-                Console.WriteLine($"Age: {data.Age}, Date: {data.Date}, RegistrationNumberAdd: {data.RegistrationNumberAdd}, Anno: {data.DocumentAnnotation}, Text: {data.Text}");
+            {                
+                Console.WriteLine(JsonSerializer.Serialize(data, 
+                                  new JsonSerializerOptions(){
+                                    WriteIndented = true,
+                                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic)
+                                  }));
             }
 
             /*var dataGenerator2 = new DataGenerator<SimpleData>(dataGenerator.Seed);

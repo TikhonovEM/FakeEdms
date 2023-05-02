@@ -14,6 +14,10 @@ namespace FakeEdms.Tests
         
         public string DocumentAnnotation { get; set; }
 
+        public double DoubleValue { get; set; }
+
+        public float? FloatValue { get; set; }
+
         public static SimpleData Create()
         {
             return new SimpleData();
