@@ -2,6 +2,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using Bogus;
 using Fare;
 
 namespace FakeEdms.Generators
@@ -11,14 +12,15 @@ namespace FakeEdms.Generators
         private static readonly string[] DefaultExpressions = 
         {
             @"^\d{4}$",
-            @"^[А-Яа-я]{2,6}-\d{4}-[А-Яа-я]{2,6}$"
+            @"^[А-Яа-я]{2,6}-\d{4}-[А-Яа-я]{2,6}$",
+            @"^\d{4}-[А-Яа-я]{2,6}$",
+            @"^[А-Яа-я]{2,6}-\d{4}$"
         };
 
         private readonly IEnumerable<string> _numberRegularExpressions = DefaultExpressions;
         
         private readonly ConcurrentDictionary<string, Xeger> _generators = new ConcurrentDictionary<string, Xeger>();
-        private readonly Random _random = new Random();
-        
+
         public RegistrationNumberGenerator()
         {
             
@@ -31,7 +33,7 @@ namespace FakeEdms.Generators
 
         public string Generate()
         {
-            var regex = _numberRegularExpressions.ElementAt(_random.Next(0, _numberRegularExpressions.Count()));
+            var regex = _numberRegularExpressions.ElementAt(Randomizer.Seed.Next(0, _numberRegularExpressions.Count()));
             var generator = _generators.GetOrAdd(regex, s => new Xeger(s));
 
             return generator.Generate();
