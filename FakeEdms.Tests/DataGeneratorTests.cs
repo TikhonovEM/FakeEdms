@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Xunit;
-using System = Bogus.DataSets.System;
 
 namespace FakeEdms.Tests
 {
