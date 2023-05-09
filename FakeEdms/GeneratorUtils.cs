@@ -7,9 +7,9 @@ namespace FakeEdms
 {
     public static class GeneratorUtils
     {
-        public static string RegistrationNumber() => RegNumberGeneratorsPool.Instance.GetGenerator().Generate();
+        public static string RegistrationNumber(int seed) => RegNumberGeneratorsPool.Instance.GetGenerator(seed).Generate();
 
-        public static string RegistrationNumber(params string[] numberPatterns) => RegNumberGeneratorsPool.Instance.GetGenerator(numberPatterns).Generate();
+        public static string RegistrationNumber(int seed, params string[] numberPatterns) => RegNumberGeneratorsPool.Instance.GetGenerator(seed, numberPatterns).Generate();
 
         public static string Subject(Faker faker) => Subject(faker, 30, 250);
 

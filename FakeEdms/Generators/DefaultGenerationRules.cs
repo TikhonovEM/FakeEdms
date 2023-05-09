@@ -21,7 +21,7 @@ namespace FakeEdms.Generators
 
 
 
-        public static Func<Faker, T, object> GetDataGenerationFactory<T>(PropertyInfo property)
+        public static Func<Faker, T, object> GetDataGenerationFactory<T>(PropertyInfo property, int seed)
         {
             switch (property.PropertyType)
             {
@@ -30,7 +30,7 @@ namespace FakeEdms.Generators
                 case Type dateType when dateType == DateType || dateType == NullDateType:
                     return (f, t) => GenerateDate(property, f);
                 case Type stringType when stringType == StringType:
-                    return (f, t) => GenerateString(property, f);
+                    return (f, t) => GenerateString(property, f, seed);
                 case Type doubleType when doubleType == DoubleType || doubleType == NullDoubleType:
                     return (f, t) => GenerateDouble(property, f);
                 case Type floatType when floatType == FloatType || floatType == NullFloatType:
@@ -51,12 +51,12 @@ namespace FakeEdms.Generators
             return faker.Date.BetweenOffset(now.AddYears(-1), now.AddYears(1)).DateTime;
         }
 
-        private static string GenerateString(PropertyInfo property, Faker faker)
+        private static string GenerateString(PropertyInfo property, Faker faker, int seed)
         {
             var propertyName = property.Name;
             
             if (RegexUtils.IsRegistrationNumber(propertyName))
-                return GeneratorUtils.RegistrationNumber();
+                return GeneratorUtils.RegistrationNumber(seed);
 
             if (RegexUtils.IsSubject(propertyName))
                 return GeneratorUtils.Subject(faker);

@@ -23,25 +23,25 @@ namespace FakeEdms
         public DataGenerator()
         {
             Seed = Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds());
-            _faker = new Faker<T>(DefaultLocale);
+            _faker = new Faker<T>(DefaultLocale).UseSeed(Seed);
         }
 
         public DataGenerator(int seed)
         {
             Seed = seed;
-            _faker = new Faker<T>(DefaultLocale);
+            _faker = new Faker<T>(DefaultLocale).UseSeed(Seed);
         }
 
         public DataGenerator(string locale)
         {
             Seed = Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds());
-            _faker = new Faker<T>(locale);
+            _faker = new Faker<T>(locale).UseSeed(Seed);
         }
 
         public DataGenerator(int seed, string locale)
         {
             Seed = seed;
-            _faker = new Faker<T>(locale);
+            _faker = new Faker<T>(locale).UseSeed(Seed);
         }
 
         #endregion
@@ -55,14 +55,12 @@ namespace FakeEdms
 
         public IEnumerable<T> Generate(int count, Func<T> factory)
         {
-            Randomizer.Seed = new Random(Seed);
-
             var result = new List<T>();
             _faker.CustomInstantiator(_ => factory?.Invoke());
 
             var properties = typeof(T).GetProperties();
             foreach (var property in properties.Where(p => !_propertiesWithCustomRule.Contains(p.Name)))
-                _faker.RuleFor(property.Name, DefaultGenerationRules.GetDataGenerationFactory<T>(property));
+                _faker.RuleFor(property.Name, DefaultGenerationRules.GetDataGenerationFactory<T>(property, Seed));
 
             for (var i = 0; i < count; i++)
                 result.Add(_faker.Generate());
@@ -106,7 +104,7 @@ namespace FakeEdms
 
         public DataGenerator<T> AsRegistrationNumber(Expression<Func<T, string>> property)
         {
-            _faker.RuleFor(property, GeneratorUtils.RegistrationNumber);
+            _faker.RuleFor(property, _ => GeneratorUtils.RegistrationNumber(Seed));
             var propertyName = PropertyName.For(property);
             if (!_propertiesWithCustomRule.Contains(propertyName))
                 _propertiesWithCustomRule.Add(propertyName);
@@ -115,7 +113,7 @@ namespace FakeEdms
         
         public DataGenerator<T> AsRegistrationNumber(Expression<Func<T, string>> property, params string[] regNumberPatterns)
         {
-            _faker.RuleFor(property, faker => GeneratorUtils.RegistrationNumber(regNumberPatterns));
+            _faker.RuleFor(property, _ => GeneratorUtils.RegistrationNumber(Seed, regNumberPatterns));
             var propertyName = PropertyName.For(property);
             if (!_propertiesWithCustomRule.Contains(propertyName))
                 _propertiesWithCustomRule.Add(propertyName);
